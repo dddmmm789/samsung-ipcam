@@ -1,20 +1,44 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
+// Define global variables
 let currentPage = 1;
 const camerasPerPage = 9;
+
+// Function to construct RTSP URLs dynamically
+function generateRTSPURL(cameraNumber) {
+    return `rtsp://${process.env.REOLINK_USERNAME}:${process.env.REOLINK_PASSWORD}@${process.env.REOLINK_IP}:554/h264Preview_${cameraNumber}_sub`;
+}
+
+// Generate RTSP URLs for all cameras
 const cameraUrls = [
-    "rtsp://admin:poipoi11@10.0.0.6:554/h264Preview_01_sub",
-    "rtsp://admin:poipoi11@10.0.0.6:554/h264Preview_02_sub",
-    "rtsp://admin:poipoi11@10.0.0.6:554/h264Preview_03_sub",
-    "rtsp://admin:poipoi11@10.0.0.6:554/h264Preview_05_sub",
-    "rtsp://admin:poipoi11@10.0.0.6:554/h264Preview_06_sub",
-    "rtsp://admin:poipoi11@10.0.0.6:554/h264Preview_08_sub",
-    "rtsp://admin:poipoi11@10.0.0.6:554/h264Preview_09_sub",
-    "rtsp://admin:poipoi11@10.0.0.6:554/h264Preview_11_sub",
-    "rtsp://admin:poipoi11@10.0.0.6:554/h264Preview_12_sub",
-    "rtsp://admin:poipoi11@10.0.0.6:554/h264Preview_13_sub",
-    "rtsp://admin:poipoi11@10.0.0.6:554/h264Preview_14_sub",
-    "rtsp://admin:poipoi11@10.0.0.6:554/h264Preview_15_sub",
-    "rtsp://admin:poipoi11@10.0.0.6:554/h264Preview_16_sub"
+    generateRTSPURL("01"),
+    generateRTSPURL("02"),
+    generateRTSPURL("03"),
+    generateRTSPURL("05"),
+    generateRTSPURL("06"),
+    generateRTSPURL("08"),
+    generateRTSPURL("09"),
+    generateRTSPURL("11"),
+    generateRTSPURL("12"),
+    generateRTSPURL("13"),
+    generateRTSPURL("14"),
+    generateRTSPURL("15"),
+    generateRTSPURL("16")
 ];
+
+// Example of displaying the current page cameras
+function displayCameras() {
+    const startIndex = (currentPage - 1) * camerasPerPage;
+    const endIndex = startIndex + camerasPerPage;
+    const camerasToDisplay = cameraUrls.slice(startIndex, endIndex);
+
+    console.log(`Cameras on Page ${currentPage}:`, camerasToDisplay);
+}
+
+// Example usage
+displayCameras();
+
 
 let isFullScreen = false;
 let selectedCameraIndex = 0;
