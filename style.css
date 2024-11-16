@@ -1,0 +1,77 @@
+/* Reset styles */
+* {
+    font-family: Lucida Sans, Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+}
+
+/* Header styling */
+header h1 {
+    font-size: 48px;
+    margin: 20px 0;
+    color: #fff;
+}
+
+header h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #888;
+    font-style: italic;
+}
+
+/* Camera Grid styling */
+#cameraGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    padding: 20px;
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.cameraCell {
+    background-color: #333;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 24px;
+}
+
+/* Placeholder for camera feed */
+.cameraCell::before {
+    content: "Camera Feed";
+    color: #888;
+}
+
+/* Pagination Controls styling */
+#paginationControls {
+    margin: 20px;
+}
+
+#paginationControls button {
+    font-size: 24px;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#paginationControls button:hover {
+    background-color: #888;
+}
